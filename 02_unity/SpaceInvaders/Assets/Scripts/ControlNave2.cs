@@ -1,8 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class ControlNave : MonoBehaviour
-{
+public class ControlNave2 : MonoBehaviour {
+
+	// Use this for initialization
 
 	// Velocidad a la que se desplaza la nave (medido en u/s)
 	private float velocidad = 20f;
@@ -13,15 +15,12 @@ public class ControlNave : MonoBehaviour
 	// Acceso al prefab del disparo
 	public Rigidbody2D disparo;
 
-	// Use this for initialization
-	void Start ()
-	{
-	
+	void Start () {
+		
 	}
 	
 	// Update is called once per frame
-	void Update ()
-	{
+	void Update () {
 		// Calculamos la anchura visible de la cámara en pantalla
 		float distanciaHorizontal = Camera.main.orthographicSize * Screen.width / Screen.height;
 
@@ -30,7 +29,7 @@ public class ControlNave : MonoBehaviour
 		float limiteDer = 1.0f * distanciaHorizontal;
 
 		// Tecla: Izquierda
-		if (Input.GetKey (KeyCode.LeftArrow)) {
+		if (Input.GetKey (KeyCode.A)) {
 
 			// Nos movemos a la izquierda hasta llegar al límite para entrar por el otro lado
 			if (transform.position.x > limiteIzq) {
@@ -41,7 +40,7 @@ public class ControlNave : MonoBehaviour
 		}
 
 		// Tecla: Derecha
-		if (Input.GetKey (KeyCode.RightArrow)) {
+		if (Input.GetKey (KeyCode.D)) {
 
 			// Nos movemos a la derecha hasta llegar al límite para entrar por el otro lado
 			if (transform.position.x < limiteDer) {
@@ -52,7 +51,7 @@ public class ControlNave : MonoBehaviour
 		}
 
 		// Disparo
-		if (Input.GetKeyDown (KeyCode.UpArrow)) {
+		if (Input.GetKeyDown (KeyCode.W)) {
 			disparar ();
 		}
 	}
@@ -71,5 +70,4 @@ public class ControlNave : MonoBehaviour
 		// Lanzarlo
 		d.AddForce (Vector2.up * fuerza, ForceMode2D.Impulse);	
 	}
-
 }
